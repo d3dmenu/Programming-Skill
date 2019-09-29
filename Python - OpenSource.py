@@ -362,7 +362,7 @@ def Ghosticket():
 
 ########################################
 # File: 5_GameOfDead
-# Build: key = str(input())
+# Build: GameOfDead()
 ########################################
 def GameOfDead():
   index = -1
@@ -378,3 +378,58 @@ def GameOfDead():
               index = (distance -1) - y
               data = [x for x in data if x != -99]
       print(data[0])
+
+########################################
+# File: 7_Flower
+# Build: Flower()
+########################################
+def Flower():
+  def const(i, j, index, size):
+    vector = [i-index, i+index, j-index, j+index]
+    for e in range(len(vector)):
+      if vector[e] < 0: vector[e] = 0
+      if vector[e] > size: vector[e] = size
+    for i in range(vector[0], vector[1]+1):
+      for j in range(vector[2], vector[3]+1):
+        if data[i][j] == 0: data[i][j] = -1
+  data, result = [], 0
+  x = int(input())
+  for c in range(x):
+    value = [int(c) for c in input().split()]
+    data.append(value)
+  for i in range(x):
+    for j in range(x):
+      index = data[i][j]
+      if index: const(i, j, index, x-1)
+  for num in range(x): result += data[num].count(0)
+  print(result)
+
+########################################
+# File: 8_Anagram
+# Build: Anagram()
+########################################
+def Anagram():
+  n = int(input())
+  for i in range(n):
+      text = str(input())
+      check = str(input())
+      text, check = sorted(list(text.upper())), sorted(list(check.upper()))
+      print("ANAGRAM") if text == check else print("NOT ANAGRAM")
+
+
+########################################
+# File: 8_Reverse
+# Build: Reverse()
+########################################
+def Reverse():
+  n = int(input())
+  for c in range(n):
+      text = str(input())
+      m = int(input())
+      for i in range(m):
+          x, y = map(int, input().split())
+          value = text[x-1:y]
+          value, text = list(value), list(text)
+          value = value[::-1]
+          for j in range(abs(x-y-1)): text[x-1+j] = value[j]
+      print("".join(map(str, text)))
